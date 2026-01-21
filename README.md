@@ -17,52 +17,55 @@
 
 ## Настройка окружения
 
-Создай файл `.env` в корне проекта (`pro-trading/.env`) по примеру:
+### 1. Создайте базу данных в NeonDB
+
+1. Зарегистрируйтесь на [Neon Console](https://console.neon.tech)
+2. Создайте новый проект
+3. Скопируйте строку подключения (Connection String) из панели управления
+
+### 2. Создайте файл `.env` в корне проекта
+
+Создайте файл `.env` в корне проекта (`C:\Work\ProTrading\.env`) со следующим содержимым:
 
 ```dotenv
-DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?sslmode=require"
+DATABASE_URL="postgresql://USER:PASSWORD@ep-xxx-yyy.region.aws.neon.tech/neondb?sslmode=require"
 ```
 
-Пример для Neon (не вставляй прямо в репозиторий, только локально / в Vercel):
+Замените `USER`, `PASSWORD`, `ep-xxx-yyy`, `region` и `neondb` на ваши реальные значения из Neon Console.
 
-```dotenv
-DATABASE_URL="postgresql://USER:PASS@ep-xxx-yyy.eu-central-1.aws.neon.tech/neondb?sslmode=require"
-```
+**Важно:** Не коммитьте файл `.env` в репозиторий! Он уже должен быть в `.gitignore`.
 
 ## Команды (PowerShell, Windows)
+
+Все команды выполняются из корня проекта (`C:\Work\ProTrading`):
 
 - **Установка зависимостей** (если нужно переустановить):
 
 ```powershell
-cd pro-trading
 npm install
 ```
 
 - **Генерация Prisma Client**:
 
 ```powershell
-cd pro-trading
 npm run prisma:generate
 ```
 
 - **Применение миграции (создание таблицы `Note`)**:
 
 ```powershell
-cd pro-trading
 npm run prisma:migrate
 ```
 
 - **Seed (создание минимальных данных `Note`)**:
 
 ```powershell
-cd pro-trading
 npm run prisma:seed
 ```
 
 - **Запуск dev-сервера**:
 
 ```powershell
-cd pro-trading
 npm run dev
 ```
 
