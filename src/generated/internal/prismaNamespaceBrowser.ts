@@ -51,7 +51,13 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Note: 'Note'
+  User: 'User',
+  Note: 'Note',
+  Category: 'Category',
+  Tradeidea: 'Tradeidea',
+  Vote: 'Vote',
+  Tag: 'Tag',
+  TagOnTradeidea: 'TagOnTradeidea'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -70,13 +76,75 @@ export const TransactionIsolationLevel = {
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const UserScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  name: 'name',
+  createdAt: 'createdAt'
+} as const
+
+export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
 export const NoteScalarFieldEnum = {
   id: 'id',
+  ownerId: 'ownerId',
   title: 'title',
   createdAt: 'createdAt'
 } as const
 
 export type NoteScalarFieldEnum = (typeof NoteScalarFieldEnum)[keyof typeof NoteScalarFieldEnum]
+
+
+export const CategoryScalarFieldEnum = {
+  id: 'id',
+  category: 'category'
+} as const
+
+export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
+
+
+export const TradeideaScalarFieldEnum = {
+  id: 'id',
+  ownerId: 'ownerId',
+  title: 'title',
+  content: 'content',
+  description: 'description',
+  categoryId: 'categoryId',
+  visibility: 'visibility',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  publishedAt: 'publishedAt'
+} as const
+
+export type TradeideaScalarFieldEnum = (typeof TradeideaScalarFieldEnum)[keyof typeof TradeideaScalarFieldEnum]
+
+
+export const VoteScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  tradeideaId: 'tradeideaId',
+  value: 'value',
+  createdAt: 'createdAt'
+} as const
+
+export type VoteScalarFieldEnum = (typeof VoteScalarFieldEnum)[keyof typeof VoteScalarFieldEnum]
+
+
+export const TagScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+} as const
+
+export type TagScalarFieldEnum = (typeof TagScalarFieldEnum)[keyof typeof TagScalarFieldEnum]
+
+
+export const TagOnTradeideaScalarFieldEnum = {
+  tradeideaId: 'tradeideaId',
+  tagId: 'tagId'
+} as const
+
+export type TagOnTradeideaScalarFieldEnum = (typeof TagOnTradeideaScalarFieldEnum)[keyof typeof TagOnTradeideaScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -93,4 +161,12 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

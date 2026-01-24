@@ -9,7 +9,9 @@
     "lint": "eslint",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev --name init",
-    "prisma:seed": "tsx prisma/seed.ts"
+    "prisma:seed": "tsx prisma/seed.ts",
+    "prisma:check": "tsx prisma/check.ts",
+    "db:studio": "prisma studio"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.2",

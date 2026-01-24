@@ -9,7 +9,9 @@
 * 🟢 You can import this file directly.
 */
 
+export const Visibility = {
+  PRIVATE: 'PRIVATE',
+  PUBLIC: 'PUBLIC'
+} as const
 
-
-// This file is empty because there are no enums in the schema.
-export {}
+export type Visibility = (typeof Visibility)[keyof typeof Visibility]

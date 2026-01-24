@@ -29,8 +29,8 @@ export * from "./enums"
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Notes
- * const notes = await prisma.note.findMany()
+ * // Fetch zero or more Users
+ * const users = await prisma.user.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -40,7 +40,37 @@ export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts exten
 export { Prisma }
 
 /**
+ * Model User
+ * 
+ */
+export type User = Prisma.UserModel
+/**
  * Model Note
  * 
  */
 export type Note = Prisma.NoteModel
+/**
+ * Model Category
+ * 
+ */
+export type Category = Prisma.CategoryModel
+/**
+ * Model Tradeidea
+ * 
+ */
+export type Tradeidea = Prisma.TradeideaModel
+/**
+ * Model Vote
+ * 
+ */
+export type Vote = Prisma.VoteModel
+/**
+ * Model Tag
+ * 
+ */
+export type Tag = Prisma.TagModel
+/**
+ * Model TagOnTradeidea
+ * 
+ */
+export type TagOnTradeidea = Prisma.TagOnTradeideaModel

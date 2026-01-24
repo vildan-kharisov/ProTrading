@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.2.0",
   "engineVersion": "0c8ef2ce45c83248ab3df073180d5eda9e8be7a3",
   "activeProvider": "postgresql",
-  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../src/generated\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel Note {\n  id        String   @id @default(uuid()) @db.Uuid\n  title     String\n  createdAt DateTime @default(now())\n}\n",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../src/generated\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel User {\n  id         String      @id @default(cuid())\n  email      String      @unique\n  name       String?\n  createdAt  DateTime    @default(now())\n  notes      Note[]\n  tradeideas Tradeidea[]\n  votes      Vote[]\n}\n\nmodel Note {\n  id        String   @id @default(cuid())\n  ownerId   String\n  title     String\n  createdAt DateTime @default(now())\n  owner     User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)\n\n  @@index([ownerId])\n}\n\nmodel Category {\n  id         String      @id @default(cuid())\n  category   String\n  tradeideas Tradeidea[]\n}\n\nmodel Tradeidea {\n  id          String           @id @default(cuid())\n  ownerId     String\n  title       String\n  content     String\n  description String?\n  categoryId  String\n  visibility  Visibility       @default(PRIVATE)\n  createdAt   DateTime         @default(now())\n  updatedAt   DateTime         @updatedAt\n  publishedAt DateTime?\n  owner       User             @relation(fields: [ownerId], references: [id], onDelete: Cascade)\n  category    Category         @relation(fields: [categoryId], references: [id])\n  votes       Vote[]\n  tags        TagOnTradeidea[]\n\n  @@index([ownerId, updatedAt])\n  @@index([visibility, createdAt])\n}\n\nmodel Vote {\n  id          String    @id @default(cuid())\n  userId      String\n  tradeideaId String\n  value       Int       @default(1)\n  createdAt   DateTime  @default(now())\n  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)\n  tradeidea   Tradeidea @relation(fields: [tradeideaId], references: [id], onDelete: Cascade)\n\n  @@unique([userId, tradeideaId])\n  @@index([tradeideaId])\n  @@index([userId])\n}\n\nmodel Tag {\n  id         String           @id @default(cuid())\n  name       String           @unique\n  tradeideas TagOnTradeidea[]\n}\n\nmodel TagOnTradeidea {\n  tradeideaId String\n  tagId       String\n  tradeidea   Tradeidea @relation(fields: [tradeideaId], references: [id], onDelete: Cascade)\n  tag         Tag       @relation(fields: [tagId], references: [id], onDelete: Cascade)\n\n  @@id([tradeideaId, tagId])\n}\n\nenum Visibility {\n  PRIVATE\n  PUBLIC\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -28,7 +28,7 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Note\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"notes\",\"kind\":\"object\",\"type\":\"Note\",\"relationName\":\"NoteToUser\"},{\"name\":\"tradeideas\",\"kind\":\"object\",\"type\":\"Tradeidea\",\"relationName\":\"TradeideaToUser\"},{\"name\":\"votes\",\"kind\":\"object\",\"type\":\"Vote\",\"relationName\":\"UserToVote\"}],\"dbName\":null},\"Note\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"ownerId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"owner\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"NoteToUser\"}],\"dbName\":null},\"Category\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"category\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"tradeideas\",\"kind\":\"object\",\"type\":\"Tradeidea\",\"relationName\":\"CategoryToTradeidea\"}],\"dbName\":null},\"Tradeidea\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"ownerId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"content\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"categoryId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"visibility\",\"kind\":\"enum\",\"type\":\"Visibility\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"publishedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"owner\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"TradeideaToUser\"},{\"name\":\"category\",\"kind\":\"object\",\"type\":\"Category\",\"relationName\":\"CategoryToTradeidea\"},{\"name\":\"votes\",\"kind\":\"object\",\"type\":\"Vote\",\"relationName\":\"TradeideaToVote\"},{\"name\":\"tags\",\"kind\":\"object\",\"type\":\"TagOnTradeidea\",\"relationName\":\"TagOnTradeideaToTradeidea\"}],\"dbName\":null},\"Vote\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"tradeideaId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"value\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"UserToVote\"},{\"name\":\"tradeidea\",\"kind\":\"object\",\"type\":\"Tradeidea\",\"relationName\":\"TradeideaToVote\"}],\"dbName\":null},\"Tag\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"tradeideas\",\"kind\":\"object\",\"type\":\"TagOnTradeidea\",\"relationName\":\"TagToTagOnTradeidea\"}],\"dbName\":null},\"TagOnTradeidea\":{\"fields\":[{\"name\":\"tradeideaId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"tagId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"tradeidea\",\"kind\":\"object\",\"type\":\"Tradeidea\",\"relationName\":\"TagOnTradeideaToTradeidea\"},{\"name\":\"tag\",\"kind\":\"object\",\"type\":\"Tag\",\"relationName\":\"TagToTagOnTradeidea\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
   const { Buffer } = await import('node:buffer')
@@ -58,8 +58,8 @@ export interface PrismaClientConstructor {
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Notes
-   * const notes = await prisma.note.findMany()
+   * // Fetch zero or more Users
+   * const users = await prisma.user.findMany()
    * ```
    * 
    * Read more in our [docs](https://pris.ly/d/client).
@@ -80,8 +80,8 @@ export interface PrismaClientConstructor {
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Notes
- * const notes = await prisma.note.findMany()
+ * // Fetch zero or more Users
+ * const users = await prisma.user.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -175,6 +175,16 @@ export interface PrismaClient<
   }>>
 
       /**
+   * `prisma.user`: Exposes CRUD operations for the **User** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Users
+    * const users = await prisma.user.findMany()
+    * ```
+    */
+  get user(): Prisma.UserDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
    * `prisma.note`: Exposes CRUD operations for the **Note** model.
     * Example usage:
     * ```ts
@@ -183,6 +193,56 @@ export interface PrismaClient<
     * ```
     */
   get note(): Prisma.NoteDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.category`: Exposes CRUD operations for the **Category** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Categories
+    * const categories = await prisma.category.findMany()
+    * ```
+    */
+  get category(): Prisma.CategoryDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.tradeidea`: Exposes CRUD operations for the **Tradeidea** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Tradeideas
+    * const tradeideas = await prisma.tradeidea.findMany()
+    * ```
+    */
+  get tradeidea(): Prisma.TradeideaDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.vote`: Exposes CRUD operations for the **Vote** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Votes
+    * const votes = await prisma.vote.findMany()
+    * ```
+    */
+  get vote(): Prisma.VoteDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.tag`: Exposes CRUD operations for the **Tag** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Tags
+    * const tags = await prisma.tag.findMany()
+    * ```
+    */
+  get tag(): Prisma.TagDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.tagOnTradeidea`: Exposes CRUD operations for the **TagOnTradeidea** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TagOnTradeideas
+    * const tagOnTradeideas = await prisma.tagOnTradeidea.findMany()
+    * ```
+    */
+  get tagOnTradeidea(): Prisma.TagOnTradeideaDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {

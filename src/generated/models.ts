@@ -8,5 +8,11 @@
  *
  * 🟢 You can import this file directly.
  */
+export type * from './models/User'
 export type * from './models/Note'
+export type * from './models/Category'
+export type * from './models/Tradeidea'
+export type * from './models/Vote'
+export type * from './models/Tag'
+export type * from './models/TagOnTradeidea'
 export type * from './commonInputTypes'
