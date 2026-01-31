@@ -24,7 +24,14 @@ export default async function DashboardPage() {
           <h1 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-50">
             Личный кабинет
           </h1>
-          <form
+          <div className="flex items-center gap-2">
+            <Link
+              href="/"
+              className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
+            >
+              Вернуться на главную
+            </Link>
+            <form
             action={async () => {
               "use server";
               await signOut({ redirectTo: "/login" });
@@ -37,6 +44,7 @@ export default async function DashboardPage() {
               Выйти
             </button>
           </form>
+          </div>
         </div>
 
         <div className="rounded-xl bg-white p-6 shadow-sm dark:bg-zinc-950">

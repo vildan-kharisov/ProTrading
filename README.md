@@ -38,7 +38,13 @@ GOOGLE_CLIENT_SECRET="ваш Google OAuth Client Secret"
 
 Замените `USER`, `PASSWORD`, `ep-xxx-yyy`, `region` и `neondb` на ваши реальные значения из Neon Console.
 
-Для входа через Google: создайте OAuth 2.0 Client в [Google Cloud Console](https://console.cloud.google.com/apis/credentials), укажите redirect URI: `http://localhost:3000/api/auth/callback/google` (для прода — ваш домен).
+Для входа через Google:
+1. [Google Cloud Console](https://console.cloud.google.com/apis/credentials) → Credentials → Create Credentials → OAuth client ID.
+2. Тип приложения: Web application.
+3. Authorized redirect URIs: **точно** `http://localhost:3000/api/auth/callback/google` (для прода — `https://ваш-домен/api/auth/callback/google`).
+4. Скопируйте Client ID и Client Secret в `.env`.
+
+Если авторизация не срабатывает: проверьте, что AUTH_SECRET задан (`npx auth secret`), redirect URI в Google совпадает с вашим URL (порт 3000 или 3001).
 
 **Важно:** Не коммитьте файл `.env` в репозиторий! Он уже должен быть в `.gitignore`.
 
