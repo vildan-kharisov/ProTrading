@@ -23,9 +23,6 @@ export default async function LoginPage() {
           Войдите через Google, чтобы получить доступ к личному кабинету и своим промтам.
         </p>
         <LoginButton />
-        <p className="mt-4 text-center text-xs text-zinc-500 dark:text-zinc-500">
-          В .env задайте AUTH_SECRET, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET. В Google Console укажите Redirect URI: ваш_домен/api/auth/callback/google
-        </p>
       </div>
     </main>
   );
