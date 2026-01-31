@@ -536,10 +536,6 @@ export type EnumVisibilityFieldUpdateOperationsInput = {
   set?: $Enums.Visibility
 }
 
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
-}
-
 export type TradeideaCreateNestedOneWithoutVotesInput = {
   create?: Prisma.XOR<Prisma.TradeideaCreateWithoutVotesInput, Prisma.TradeideaUncheckedCreateWithoutVotesInput>
   connectOrCreate?: Prisma.TradeideaCreateOrConnectWithoutVotesInput

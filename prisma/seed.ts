@@ -19,10 +19,20 @@ async function main() {
   const count = await prisma.note.count();
 
   if (count === 0) {
+    // Создаём системного пользователя для seed-заметок (Note требует ownerId)
+    const systemUser = await prisma.user.upsert({
+      where: { email: "system@seed.local" },
+      update: {},
+      create: {
+        email: "system@seed.local",
+        name: "Система (seed)",
+      },
+    });
+
     await prisma.note.createMany({
       data: [
-        { title: "Первая заметка из seed-скрипта" },
-        { title: "Вторая заметка, загруженная из PostgreSQL" },
+        { title: "Первая заметка из seed-скрипта", ownerId: systemUser.id },
+        { title: "Вторая заметка, загруженная из PostgreSQL", ownerId: systemUser.id },
       ],
     });
   }

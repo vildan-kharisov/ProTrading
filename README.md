@@ -29,9 +29,16 @@
 
 ```dotenv
 DATABASE_URL="postgresql://USER:PASSWORD@ep-xxx-yyy.region.aws.neon.tech/neondb?sslmode=require"
+
+# Auth.js (OAuth Google)
+AUTH_SECRET="сгенерируйте: npx auth secret"
+GOOGLE_CLIENT_ID="ваш Google OAuth Client ID"
+GOOGLE_CLIENT_SECRET="ваш Google OAuth Client Secret"
 ```
 
 Замените `USER`, `PASSWORD`, `ep-xxx-yyy`, `region` и `neondb` на ваши реальные значения из Neon Console.
+
+Для входа через Google: создайте OAuth 2.0 Client в [Google Cloud Console](https://console.cloud.google.com/apis/credentials), укажите redirect URI: `http://localhost:3000/api/auth/callback/google` (для прода — ваш домен).
 
 **Важно:** Не коммитьте файл `.env` в репозиторий! Он уже должен быть в `.gitignore`.
 

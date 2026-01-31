@@ -1,14 +1,14 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 
 interface Table {
   name: string;
   displayName: string;
 }
 
-export default function TablesPage() {
+function TablesContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const dbType = searchParams.get("db") || "remote";
@@ -114,5 +114,19 @@ export default function TablesPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function TablesPage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="flex min-h-screen flex-col items-center justify-center bg-zinc-50 px-4 py-8 font-sans dark:bg-black">
+          <div className="text-zinc-600 dark:text-zinc-400">Загрузка...</div>
+        </main>
+      }
+    >
+      <TablesContent />
+    </Suspense>
   );
 }
