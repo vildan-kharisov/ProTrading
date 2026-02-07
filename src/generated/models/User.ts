@@ -203,6 +203,7 @@ export type UserWhereInput = {
   notes?: Prisma.NoteListRelationFilter
   tradeideas?: Prisma.TradeideaListRelationFilter
   votes?: Prisma.VoteListRelationFilter
+  prompts?: Prisma.PromptListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -218,6 +219,7 @@ export type UserOrderByWithRelationInput = {
   notes?: Prisma.NoteOrderByRelationAggregateInput
   tradeideas?: Prisma.TradeideaOrderByRelationAggregateInput
   votes?: Prisma.VoteOrderByRelationAggregateInput
+  prompts?: Prisma.PromptOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -236,6 +238,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   notes?: Prisma.NoteListRelationFilter
   tradeideas?: Prisma.TradeideaListRelationFilter
   votes?: Prisma.VoteListRelationFilter
+  prompts?: Prisma.PromptListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -277,6 +280,7 @@ export type UserCreateInput = {
   notes?: Prisma.NoteCreateNestedManyWithoutOwnerInput
   tradeideas?: Prisma.TradeideaCreateNestedManyWithoutOwnerInput
   votes?: Prisma.VoteCreateNestedManyWithoutUserInput
+  prompts?: Prisma.PromptCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -292,6 +296,7 @@ export type UserUncheckedCreateInput = {
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutOwnerInput
   tradeideas?: Prisma.TradeideaUncheckedCreateNestedManyWithoutOwnerInput
   votes?: Prisma.VoteUncheckedCreateNestedManyWithoutUserInput
+  prompts?: Prisma.PromptUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -307,6 +312,7 @@ export type UserUpdateInput = {
   notes?: Prisma.NoteUpdateManyWithoutOwnerNestedInput
   tradeideas?: Prisma.TradeideaUpdateManyWithoutOwnerNestedInput
   votes?: Prisma.VoteUpdateManyWithoutUserNestedInput
+  prompts?: Prisma.PromptUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -322,6 +328,7 @@ export type UserUncheckedUpdateInput = {
   notes?: Prisma.NoteUncheckedUpdateManyWithoutOwnerNestedInput
   tradeideas?: Prisma.TradeideaUncheckedUpdateManyWithoutOwnerNestedInput
   votes?: Prisma.VoteUncheckedUpdateManyWithoutUserNestedInput
+  prompts?: Prisma.PromptUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -475,6 +482,20 @@ export type UserUpdateOneRequiredWithoutVotesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutVotesInput, Prisma.UserUpdateWithoutVotesInput>, Prisma.UserUncheckedUpdateWithoutVotesInput>
 }
 
+export type UserCreateNestedOneWithoutPromptsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPromptsInput, Prisma.UserUncheckedCreateWithoutPromptsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPromptsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPromptsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPromptsInput, Prisma.UserUncheckedCreateWithoutPromptsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPromptsInput
+  upsert?: Prisma.UserUpsertWithoutPromptsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPromptsInput, Prisma.UserUpdateWithoutPromptsInput>, Prisma.UserUncheckedUpdateWithoutPromptsInput>
+}
+
 export type UserCreateWithoutAccountsInput = {
   id?: string
   email: string
@@ -487,6 +508,7 @@ export type UserCreateWithoutAccountsInput = {
   notes?: Prisma.NoteCreateNestedManyWithoutOwnerInput
   tradeideas?: Prisma.TradeideaCreateNestedManyWithoutOwnerInput
   votes?: Prisma.VoteCreateNestedManyWithoutUserInput
+  prompts?: Prisma.PromptCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
@@ -501,6 +523,7 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutOwnerInput
   tradeideas?: Prisma.TradeideaUncheckedCreateNestedManyWithoutOwnerInput
   votes?: Prisma.VoteUncheckedCreateNestedManyWithoutUserInput
+  prompts?: Prisma.PromptUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -531,6 +554,7 @@ export type UserUpdateWithoutAccountsInput = {
   notes?: Prisma.NoteUpdateManyWithoutOwnerNestedInput
   tradeideas?: Prisma.TradeideaUpdateManyWithoutOwnerNestedInput
   votes?: Prisma.VoteUpdateManyWithoutUserNestedInput
+  prompts?: Prisma.PromptUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -545,6 +569,7 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   notes?: Prisma.NoteUncheckedUpdateManyWithoutOwnerNestedInput
   tradeideas?: Prisma.TradeideaUncheckedUpdateManyWithoutOwnerNestedInput
   votes?: Prisma.VoteUncheckedUpdateManyWithoutUserNestedInput
+  prompts?: Prisma.PromptUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSessionsInput = {
@@ -559,6 +584,7 @@ export type UserCreateWithoutSessionsInput = {
   notes?: Prisma.NoteCreateNestedManyWithoutOwnerInput
   tradeideas?: Prisma.TradeideaCreateNestedManyWithoutOwnerInput
   votes?: Prisma.VoteCreateNestedManyWithoutUserInput
+  prompts?: Prisma.PromptCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -573,6 +599,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutOwnerInput
   tradeideas?: Prisma.TradeideaUncheckedCreateNestedManyWithoutOwnerInput
   votes?: Prisma.VoteUncheckedCreateNestedManyWithoutUserInput
+  prompts?: Prisma.PromptUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -603,6 +630,7 @@ export type UserUpdateWithoutSessionsInput = {
   notes?: Prisma.NoteUpdateManyWithoutOwnerNestedInput
   tradeideas?: Prisma.TradeideaUpdateManyWithoutOwnerNestedInput
   votes?: Prisma.VoteUpdateManyWithoutUserNestedInput
+  prompts?: Prisma.PromptUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -617,6 +645,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   notes?: Prisma.NoteUncheckedUpdateManyWithoutOwnerNestedInput
   tradeideas?: Prisma.TradeideaUncheckedUpdateManyWithoutOwnerNestedInput
   votes?: Prisma.VoteUncheckedUpdateManyWithoutUserNestedInput
+  prompts?: Prisma.PromptUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutNotesInput = {
@@ -631,6 +660,7 @@ export type UserCreateWithoutNotesInput = {
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   tradeideas?: Prisma.TradeideaCreateNestedManyWithoutOwnerInput
   votes?: Prisma.VoteCreateNestedManyWithoutUserInput
+  prompts?: Prisma.PromptCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNotesInput = {
@@ -645,6 +675,7 @@ export type UserUncheckedCreateWithoutNotesInput = {
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   tradeideas?: Prisma.TradeideaUncheckedCreateNestedManyWithoutOwnerInput
   votes?: Prisma.VoteUncheckedCreateNestedManyWithoutUserInput
+  prompts?: Prisma.PromptUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNotesInput = {
@@ -675,6 +706,7 @@ export type UserUpdateWithoutNotesInput = {
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   tradeideas?: Prisma.TradeideaUpdateManyWithoutOwnerNestedInput
   votes?: Prisma.VoteUpdateManyWithoutUserNestedInput
+  prompts?: Prisma.PromptUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotesInput = {
@@ -689,6 +721,7 @@ export type UserUncheckedUpdateWithoutNotesInput = {
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   tradeideas?: Prisma.TradeideaUncheckedUpdateManyWithoutOwnerNestedInput
   votes?: Prisma.VoteUncheckedUpdateManyWithoutUserNestedInput
+  prompts?: Prisma.PromptUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutTradeideasInput = {
@@ -703,6 +736,7 @@ export type UserCreateWithoutTradeideasInput = {
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   notes?: Prisma.NoteCreateNestedManyWithoutOwnerInput
   votes?: Prisma.VoteCreateNestedManyWithoutUserInput
+  prompts?: Prisma.PromptCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTradeideasInput = {
@@ -717,6 +751,7 @@ export type UserUncheckedCreateWithoutTradeideasInput = {
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutOwnerInput
   votes?: Prisma.VoteUncheckedCreateNestedManyWithoutUserInput
+  prompts?: Prisma.PromptUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTradeideasInput = {
@@ -747,6 +782,7 @@ export type UserUpdateWithoutTradeideasInput = {
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   notes?: Prisma.NoteUpdateManyWithoutOwnerNestedInput
   votes?: Prisma.VoteUpdateManyWithoutUserNestedInput
+  prompts?: Prisma.PromptUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTradeideasInput = {
@@ -761,6 +797,7 @@ export type UserUncheckedUpdateWithoutTradeideasInput = {
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   notes?: Prisma.NoteUncheckedUpdateManyWithoutOwnerNestedInput
   votes?: Prisma.VoteUncheckedUpdateManyWithoutUserNestedInput
+  prompts?: Prisma.PromptUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutVotesInput = {
@@ -775,6 +812,7 @@ export type UserCreateWithoutVotesInput = {
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   notes?: Prisma.NoteCreateNestedManyWithoutOwnerInput
   tradeideas?: Prisma.TradeideaCreateNestedManyWithoutOwnerInput
+  prompts?: Prisma.PromptCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutVotesInput = {
@@ -789,6 +827,7 @@ export type UserUncheckedCreateWithoutVotesInput = {
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutOwnerInput
   tradeideas?: Prisma.TradeideaUncheckedCreateNestedManyWithoutOwnerInput
+  prompts?: Prisma.PromptUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutVotesInput = {
@@ -819,6 +858,7 @@ export type UserUpdateWithoutVotesInput = {
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   notes?: Prisma.NoteUpdateManyWithoutOwnerNestedInput
   tradeideas?: Prisma.TradeideaUpdateManyWithoutOwnerNestedInput
+  prompts?: Prisma.PromptUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutVotesInput = {
@@ -833,6 +873,83 @@ export type UserUncheckedUpdateWithoutVotesInput = {
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   notes?: Prisma.NoteUncheckedUpdateManyWithoutOwnerNestedInput
   tradeideas?: Prisma.TradeideaUncheckedUpdateManyWithoutOwnerNestedInput
+  prompts?: Prisma.PromptUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutPromptsInput = {
+  id?: string
+  email: string
+  name?: string | null
+  image?: string | null
+  emailVerified?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  notes?: Prisma.NoteCreateNestedManyWithoutOwnerInput
+  tradeideas?: Prisma.TradeideaCreateNestedManyWithoutOwnerInput
+  votes?: Prisma.VoteCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutPromptsInput = {
+  id?: string
+  email: string
+  name?: string | null
+  image?: string | null
+  emailVerified?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutOwnerInput
+  tradeideas?: Prisma.TradeideaUncheckedCreateNestedManyWithoutOwnerInput
+  votes?: Prisma.VoteUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutPromptsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPromptsInput, Prisma.UserUncheckedCreateWithoutPromptsInput>
+}
+
+export type UserUpsertWithoutPromptsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPromptsInput, Prisma.UserUncheckedUpdateWithoutPromptsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPromptsInput, Prisma.UserUncheckedCreateWithoutPromptsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPromptsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPromptsInput, Prisma.UserUncheckedUpdateWithoutPromptsInput>
+}
+
+export type UserUpdateWithoutPromptsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  notes?: Prisma.NoteUpdateManyWithoutOwnerNestedInput
+  tradeideas?: Prisma.TradeideaUpdateManyWithoutOwnerNestedInput
+  votes?: Prisma.VoteUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPromptsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutOwnerNestedInput
+  tradeideas?: Prisma.TradeideaUncheckedUpdateManyWithoutOwnerNestedInput
+  votes?: Prisma.VoteUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -846,6 +963,7 @@ export type UserCountOutputType = {
   notes: number
   tradeideas: number
   votes: number
+  prompts: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -854,6 +972,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   notes?: boolean | UserCountOutputTypeCountNotesArgs
   tradeideas?: boolean | UserCountOutputTypeCountTradeideasArgs
   votes?: boolean | UserCountOutputTypeCountVotesArgs
+  prompts?: boolean | UserCountOutputTypeCountPromptsArgs
 }
 
 /**
@@ -901,6 +1020,13 @@ export type UserCountOutputTypeCountVotesArgs<ExtArgs extends runtime.Types.Exte
   where?: Prisma.VoteWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPromptsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PromptWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -915,6 +1041,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   notes?: boolean | Prisma.User$notesArgs<ExtArgs>
   tradeideas?: boolean | Prisma.User$tradeideasArgs<ExtArgs>
   votes?: boolean | Prisma.User$votesArgs<ExtArgs>
+  prompts?: boolean | Prisma.User$promptsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -955,6 +1082,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   notes?: boolean | Prisma.User$notesArgs<ExtArgs>
   tradeideas?: boolean | Prisma.User$tradeideasArgs<ExtArgs>
   votes?: boolean | Prisma.User$votesArgs<ExtArgs>
+  prompts?: boolean | Prisma.User$promptsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -968,6 +1096,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     notes: Prisma.$NotePayload<ExtArgs>[]
     tradeideas: Prisma.$TradeideaPayload<ExtArgs>[]
     votes: Prisma.$VotePayload<ExtArgs>[]
+    prompts: Prisma.$PromptPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1376,6 +1505,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   notes<T extends Prisma.User$notesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tradeideas<T extends Prisma.User$tradeideasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$tradeideasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TradeideaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   votes<T extends Prisma.User$votesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$votesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  prompts<T extends Prisma.User$promptsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$promptsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PromptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1917,6 +2047,30 @@ export type User$votesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
   take?: number
   skip?: number
   distinct?: Prisma.VoteScalarFieldEnum | Prisma.VoteScalarFieldEnum[]
+}
+
+/**
+ * User.prompts
+ */
+export type User$promptsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Prompt
+   */
+  select?: Prisma.PromptSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Prompt
+   */
+  omit?: Prisma.PromptOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PromptInclude<ExtArgs> | null
+  where?: Prisma.PromptWhereInput
+  orderBy?: Prisma.PromptOrderByWithRelationInput | Prisma.PromptOrderByWithRelationInput[]
+  cursor?: Prisma.PromptWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PromptScalarFieldEnum | Prisma.PromptScalarFieldEnum[]
 }
 
 /**

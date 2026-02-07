@@ -60,7 +60,8 @@ export const ModelName = {
   Tradeidea: 'Tradeidea',
   Vote: 'Vote',
   Tag: 'Tag',
-  TagOnTradeidea: 'TagOnTradeidea'
+  TagOnTradeidea: 'TagOnTradeidea',
+  Prompt: 'Prompt'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -188,6 +189,20 @@ export const TagOnTradeideaScalarFieldEnum = {
 } as const
 
 export type TagOnTradeideaScalarFieldEnum = (typeof TagOnTradeideaScalarFieldEnum)[keyof typeof TagOnTradeideaScalarFieldEnum]
+
+
+export const PromptScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  title: 'title',
+  content: 'content',
+  isPublic: 'isPublic',
+  isFavorite: 'isFavorite',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PromptScalarFieldEnum = (typeof PromptScalarFieldEnum)[keyof typeof PromptScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -67,3 +67,8 @@ export type Tag = Prisma.TagModel
  * 
  */
 export type TagOnTradeidea = Prisma.TagOnTradeideaModel
+/**
+ * Model Prompt
+ * 
+ */
+export type Prompt = Prisma.PromptModel

@@ -54,6 +54,7 @@ export const PRISMA_MODELS = [
   "Vote",
   "Tag",
   "TagOnTradeidea",
+  "Prompt",
 ] as const;
 
 export type PrismaModel = (typeof PRISMA_MODELS)[number];
@@ -67,4 +68,5 @@ export const MODEL_NAME_MAP: Record<PrismaModel, string> = {
   Vote: "vote",
   Tag: "tag",
   TagOnTradeidea: "tagOnTradeidea",
+  Prompt: "prompt",
 };

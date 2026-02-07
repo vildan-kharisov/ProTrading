@@ -1,21 +1,19 @@
 /**
- * Страница «Мои промты» — главная страница Личного кабинета.
- * Показывает список промтов текущего пользователя с поиском и пагинацией.
+ * Страница «Избранное» — промты пользователя с isFavorite = true.
  */
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { PromptList } from "@/components/dashboard/prompt-list";
 import { SearchInput } from "@/components/dashboard/search-input";
-import { CreatePromptButton } from "@/components/dashboard/create-prompt-button";
 
 const PAGE_SIZE = 10;
 
-interface DashboardPageProps {
+interface FavoritesPageProps {
   searchParams: Promise<{ q?: string; page?: string }>;
 }
 
-export default async function DashboardPage({ searchParams }: DashboardPageProps) {
+export default async function FavoritesPage({ searchParams }: FavoritesPageProps) {
   const session = await auth();
   if (!session?.user?.id) redirect("/login");
 
@@ -24,9 +22,9 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
   const query = params.q ?? "";
   const page = Math.max(1, parseInt(params.page ?? "1", 10) || 1);
 
-  // Фильтр поиска по title и content
   const where = {
     userId,
+    isFavorite: true,
     ...(query
       ? {
           OR: [
@@ -37,7 +35,6 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
       : {}),
   };
 
-  // Параллельные запросы: данные + общее количество
   const [prompts, totalCount] = await Promise.all([
     prisma.prompt.findMany({
       where,
@@ -51,17 +48,12 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
   return (
     <div className="mx-auto max-w-4xl">
       <h1 className="text-2xl font-bold text-slate-900">Личный кабинет</h1>
-      <h2 className="mt-1 text-lg text-slate-500">Мои промты</h2>
+      <h2 className="mt-1 text-lg text-slate-500">Избранное</h2>
 
-      {/* Панель инструментов: поиск + кнопка создания */}
-      <div className="mt-6 flex items-center gap-4">
-        <div className="flex-1">
-          <SearchInput />
-        </div>
-        <CreatePromptButton />
+      <div className="mt-6">
+        <SearchInput />
       </div>
 
-      {/* Список промтов */}
       <div className="mt-6">
         <PromptList
           prompts={prompts}
@@ -70,7 +62,7 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
           emptyText={
             query
               ? `По запросу «${query}» ничего не найдено`
-              : "У вас пока нет промтов — создайте первый!"
+              : "У вас пока нет избранных промтов — нажмите звёздочку на любом промте"
           }
           page={page}
           totalCount={totalCount}
