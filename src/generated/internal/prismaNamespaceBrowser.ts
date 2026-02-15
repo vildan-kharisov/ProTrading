@@ -61,7 +61,8 @@ export const ModelName = {
   Vote: 'Vote',
   Tag: 'Tag',
   TagOnTradeidea: 'TagOnTradeidea',
-  Prompt: 'Prompt'
+  Prompt: 'Prompt',
+  PromptLike: 'PromptLike'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -203,6 +204,16 @@ export const PromptScalarFieldEnum = {
 } as const
 
 export type PromptScalarFieldEnum = (typeof PromptScalarFieldEnum)[keyof typeof PromptScalarFieldEnum]
+
+
+export const PromptLikeScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  promptId: 'promptId',
+  createdAt: 'createdAt'
+} as const
+
+export type PromptLikeScalarFieldEnum = (typeof PromptLikeScalarFieldEnum)[keyof typeof PromptLikeScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -22,6 +22,7 @@ model User {
   tradeideas    Tradeidea[]
   votes         Vote[]
   prompts       Prompt[]
+  promptLikes   PromptLike[]
 }
 
 // Аккаунты OAuth (Google и др.) — для Auth.js
@@ -145,9 +146,25 @@ model Prompt {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user  User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  likes PromptLike[]
 
   @@index([userId, updatedAt])
   @@index([isPublic, createdAt])
+}
+
+// Лайк на публичный промт: 1 пользователь = 1 лайк (toggle)
+model PromptLike {
+  id        String   @id @default(cuid())
+  userId    String
+  promptId  String
+  createdAt DateTime @default(now())
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  prompt Prompt @relation(fields: [promptId], references: [id], onDelete: Cascade)
+
+  // Защита от дублей: один пользователь — один лайк на промт
+  @@unique([userId, promptId])
+  @@index([promptId])
 }
 

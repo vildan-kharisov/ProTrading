@@ -55,6 +55,7 @@ export const PRISMA_MODELS = [
   "Tag",
   "TagOnTradeidea",
   "Prompt",
+  "PromptLike",
 ] as const;
 
 export type PrismaModel = (typeof PRISMA_MODELS)[number];
@@ -69,4 +70,5 @@ export const MODEL_NAME_MAP: Record<PrismaModel, string> = {
   Tag: "tag",
   TagOnTradeidea: "tagOnTradeidea",
   Prompt: "prompt",
+  PromptLike: "promptLike",
 };

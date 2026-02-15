@@ -72,3 +72,8 @@ export type TagOnTradeidea = Prisma.TagOnTradeideaModel
  * 
  */
 export type Prompt = Prisma.PromptModel
+/**
+ * Model PromptLike
+ * 
+ */
+export type PromptLike = Prisma.PromptLikeModel

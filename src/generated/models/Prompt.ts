@@ -207,6 +207,7 @@ export type PromptWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Prompt"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Prompt"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  likes?: Prisma.PromptLikeListRelationFilter
 }
 
 export type PromptOrderByWithRelationInput = {
@@ -219,6 +220,7 @@ export type PromptOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
+  likes?: Prisma.PromptLikeOrderByRelationAggregateInput
 }
 
 export type PromptWhereUniqueInput = Prisma.AtLeast<{
@@ -234,6 +236,7 @@ export type PromptWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Prompt"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Prompt"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  likes?: Prisma.PromptLikeListRelationFilter
 }, "id">
 
 export type PromptOrderByWithAggregationInput = {
@@ -273,6 +276,7 @@ export type PromptCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutPromptsInput
+  likes?: Prisma.PromptLikeCreateNestedManyWithoutPromptInput
 }
 
 export type PromptUncheckedCreateInput = {
@@ -284,6 +288,7 @@ export type PromptUncheckedCreateInput = {
   isFavorite?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  likes?: Prisma.PromptLikeUncheckedCreateNestedManyWithoutPromptInput
 }
 
 export type PromptUpdateInput = {
@@ -295,6 +300,7 @@ export type PromptUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutPromptsNestedInput
+  likes?: Prisma.PromptLikeUpdateManyWithoutPromptNestedInput
 }
 
 export type PromptUncheckedUpdateInput = {
@@ -306,6 +312,7 @@ export type PromptUncheckedUpdateInput = {
   isFavorite?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  likes?: Prisma.PromptLikeUncheckedUpdateManyWithoutPromptNestedInput
 }
 
 export type PromptCreateManyInput = {
@@ -383,6 +390,11 @@ export type PromptMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
+export type PromptScalarRelationFilter = {
+  is?: Prisma.PromptWhereInput
+  isNot?: Prisma.PromptWhereInput
+}
+
 export type PromptCreateNestedManyWithoutUserInput = {
   create?: Prisma.XOR<Prisma.PromptCreateWithoutUserInput, Prisma.PromptUncheckedCreateWithoutUserInput> | Prisma.PromptCreateWithoutUserInput[] | Prisma.PromptUncheckedCreateWithoutUserInput[]
   connectOrCreate?: Prisma.PromptCreateOrConnectWithoutUserInput | Prisma.PromptCreateOrConnectWithoutUserInput[]
@@ -429,6 +441,20 @@ export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
 
+export type PromptCreateNestedOneWithoutLikesInput = {
+  create?: Prisma.XOR<Prisma.PromptCreateWithoutLikesInput, Prisma.PromptUncheckedCreateWithoutLikesInput>
+  connectOrCreate?: Prisma.PromptCreateOrConnectWithoutLikesInput
+  connect?: Prisma.PromptWhereUniqueInput
+}
+
+export type PromptUpdateOneRequiredWithoutLikesNestedInput = {
+  create?: Prisma.XOR<Prisma.PromptCreateWithoutLikesInput, Prisma.PromptUncheckedCreateWithoutLikesInput>
+  connectOrCreate?: Prisma.PromptCreateOrConnectWithoutLikesInput
+  upsert?: Prisma.PromptUpsertWithoutLikesInput
+  connect?: Prisma.PromptWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PromptUpdateToOneWithWhereWithoutLikesInput, Prisma.PromptUpdateWithoutLikesInput>, Prisma.PromptUncheckedUpdateWithoutLikesInput>
+}
+
 export type PromptCreateWithoutUserInput = {
   id?: string
   title: string
@@ -437,6 +463,7 @@ export type PromptCreateWithoutUserInput = {
   isFavorite?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  likes?: Prisma.PromptLikeCreateNestedManyWithoutPromptInput
 }
 
 export type PromptUncheckedCreateWithoutUserInput = {
@@ -447,6 +474,7 @@ export type PromptUncheckedCreateWithoutUserInput = {
   isFavorite?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  likes?: Prisma.PromptLikeUncheckedCreateNestedManyWithoutPromptInput
 }
 
 export type PromptCreateOrConnectWithoutUserInput = {
@@ -489,6 +517,66 @@ export type PromptScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Prompt"> | Date | string
 }
 
+export type PromptCreateWithoutLikesInput = {
+  id?: string
+  title: string
+  content: string
+  isPublic?: boolean
+  isFavorite?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutPromptsInput
+}
+
+export type PromptUncheckedCreateWithoutLikesInput = {
+  id?: string
+  userId: string
+  title: string
+  content: string
+  isPublic?: boolean
+  isFavorite?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type PromptCreateOrConnectWithoutLikesInput = {
+  where: Prisma.PromptWhereUniqueInput
+  create: Prisma.XOR<Prisma.PromptCreateWithoutLikesInput, Prisma.PromptUncheckedCreateWithoutLikesInput>
+}
+
+export type PromptUpsertWithoutLikesInput = {
+  update: Prisma.XOR<Prisma.PromptUpdateWithoutLikesInput, Prisma.PromptUncheckedUpdateWithoutLikesInput>
+  create: Prisma.XOR<Prisma.PromptCreateWithoutLikesInput, Prisma.PromptUncheckedCreateWithoutLikesInput>
+  where?: Prisma.PromptWhereInput
+}
+
+export type PromptUpdateToOneWithWhereWithoutLikesInput = {
+  where?: Prisma.PromptWhereInput
+  data: Prisma.XOR<Prisma.PromptUpdateWithoutLikesInput, Prisma.PromptUncheckedUpdateWithoutLikesInput>
+}
+
+export type PromptUpdateWithoutLikesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isFavorite?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutPromptsNestedInput
+}
+
+export type PromptUncheckedUpdateWithoutLikesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isFavorite?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type PromptCreateManyUserInput = {
   id?: string
   title: string
@@ -507,6 +595,7 @@ export type PromptUpdateWithoutUserInput = {
   isFavorite?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  likes?: Prisma.PromptLikeUpdateManyWithoutPromptNestedInput
 }
 
 export type PromptUncheckedUpdateWithoutUserInput = {
@@ -517,6 +606,7 @@ export type PromptUncheckedUpdateWithoutUserInput = {
   isFavorite?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  likes?: Prisma.PromptLikeUncheckedUpdateManyWithoutPromptNestedInput
 }
 
 export type PromptUncheckedUpdateManyWithoutUserInput = {
@@ -530,6 +620,35 @@ export type PromptUncheckedUpdateManyWithoutUserInput = {
 }
 
 
+/**
+ * Count Type PromptCountOutputType
+ */
+
+export type PromptCountOutputType = {
+  likes: number
+}
+
+export type PromptCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  likes?: boolean | PromptCountOutputTypeCountLikesArgs
+}
+
+/**
+ * PromptCountOutputType without action
+ */
+export type PromptCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PromptCountOutputType
+   */
+  select?: Prisma.PromptCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * PromptCountOutputType without action
+ */
+export type PromptCountOutputTypeCountLikesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PromptLikeWhereInput
+}
+
 
 export type PromptSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -541,6 +660,8 @@ export type PromptSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  likes?: boolean | Prisma.Prompt$likesArgs<ExtArgs>
+  _count?: boolean | Prisma.PromptCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["prompt"]>
 
 export type PromptSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -581,6 +702,8 @@ export type PromptSelectScalar = {
 export type PromptOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "title" | "content" | "isPublic" | "isFavorite" | "createdAt" | "updatedAt", ExtArgs["result"]["prompt"]>
 export type PromptInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  likes?: boolean | Prisma.Prompt$likesArgs<ExtArgs>
+  _count?: boolean | Prisma.PromptCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PromptIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -593,6 +716,7 @@ export type $PromptPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   name: "Prompt"
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
+    likes: Prisma.$PromptLikePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -998,6 +1122,7 @@ readonly fields: PromptFieldRefs;
 export interface Prisma__PromptClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  likes<T extends Prisma.Prompt$likesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Prompt$likesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PromptLikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1428,6 +1553,30 @@ export type PromptDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Limit how many Prompts to delete.
    */
   limit?: number
+}
+
+/**
+ * Prompt.likes
+ */
+export type Prompt$likesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PromptLike
+   */
+  select?: Prisma.PromptLikeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PromptLike
+   */
+  omit?: Prisma.PromptLikeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PromptLikeInclude<ExtArgs> | null
+  where?: Prisma.PromptLikeWhereInput
+  orderBy?: Prisma.PromptLikeOrderByWithRelationInput | Prisma.PromptLikeOrderByWithRelationInput[]
+  cursor?: Prisma.PromptLikeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PromptLikeScalarFieldEnum | Prisma.PromptLikeScalarFieldEnum[]
 }
 
 /**

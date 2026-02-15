@@ -24,6 +24,7 @@ async function togglePublicAction(formData: FormData) {
 }
 import { DeleteConfirmDialog } from "./delete-confirm-dialog";
 import { PromptDialog } from "./prompt-dialog";
+import { LikeButton } from "./like-button";
 
 export interface PromptData {
   id: string;
@@ -34,6 +35,10 @@ export interface PromptData {
   userId: string;
   createdAt: Date;
   updatedAt: Date;
+  /** Количество лайков (передаётся для публичных промтов) */
+  likesCount?: number;
+  /** Лайкнут ли текущим пользователем */
+  likedByMe?: boolean;
 }
 
 interface PromptCardProps {
@@ -66,6 +71,15 @@ export function PromptCard({ prompt, currentUserId, showOwnerActions = true }: P
 
         {/* Действия */}
         <div className="flex shrink-0 items-center gap-1">
+          {/* Лайк — только для публичных промтов */}
+          {prompt.isPublic && prompt.likesCount !== undefined && (
+            <LikeButton
+              promptId={prompt.id}
+              initialLiked={prompt.likedByMe ?? false}
+              initialCount={prompt.likesCount}
+            />
+          )}
+
           {/* Звезда (избранное) — только для владельца */}
           {isOwner && (
             <form action={toggleFavoriteAction}>

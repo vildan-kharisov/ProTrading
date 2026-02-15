@@ -394,7 +394,8 @@ export const ModelName = {
   Vote: 'Vote',
   Tag: 'Tag',
   TagOnTradeidea: 'TagOnTradeidea',
-  Prompt: 'Prompt'
+  Prompt: 'Prompt',
+  PromptLike: 'PromptLike'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -410,7 +411,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "account" | "session" | "verificationToken" | "note" | "category" | "tradeidea" | "vote" | "tag" | "tagOnTradeidea" | "prompt"
+    modelProps: "user" | "account" | "session" | "verificationToken" | "note" | "category" | "tradeidea" | "vote" | "tag" | "tagOnTradeidea" | "prompt" | "promptLike"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1228,6 +1229,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    PromptLike: {
+      payload: Prisma.$PromptLikePayload<ExtArgs>
+      fields: Prisma.PromptLikeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PromptLikeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PromptLikePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PromptLikeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PromptLikePayload>
+        }
+        findFirst: {
+          args: Prisma.PromptLikeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PromptLikePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PromptLikeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PromptLikePayload>
+        }
+        findMany: {
+          args: Prisma.PromptLikeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PromptLikePayload>[]
+        }
+        create: {
+          args: Prisma.PromptLikeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PromptLikePayload>
+        }
+        createMany: {
+          args: Prisma.PromptLikeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PromptLikeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PromptLikePayload>[]
+        }
+        delete: {
+          args: Prisma.PromptLikeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PromptLikePayload>
+        }
+        update: {
+          args: Prisma.PromptLikeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PromptLikePayload>
+        }
+        deleteMany: {
+          args: Prisma.PromptLikeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PromptLikeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PromptLikeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PromptLikePayload>[]
+        }
+        upsert: {
+          args: Prisma.PromptLikeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PromptLikePayload>
+        }
+        aggregate: {
+          args: Prisma.PromptLikeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePromptLike>
+        }
+        groupBy: {
+          args: Prisma.PromptLikeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PromptLikeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PromptLikeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PromptLikeCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1390,6 +1465,16 @@ export const PromptScalarFieldEnum = {
 } as const
 
 export type PromptScalarFieldEnum = (typeof PromptScalarFieldEnum)[keyof typeof PromptScalarFieldEnum]
+
+
+export const PromptLikeScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  promptId: 'promptId',
+  createdAt: 'createdAt'
+} as const
+
+export type PromptLikeScalarFieldEnum = (typeof PromptLikeScalarFieldEnum)[keyof typeof PromptLikeScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1604,6 +1689,7 @@ export type GlobalOmitConfig = {
   tag?: Prisma.TagOmit
   tagOnTradeidea?: Prisma.TagOnTradeideaOmit
   prompt?: Prisma.PromptOmit
+  promptLike?: Prisma.PromptLikeOmit
 }
 
 /* Types for Logging */
