@@ -14,7 +14,7 @@ export default async function LoginPage() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-zinc-50 px-4 py-8 font-sans dark:bg-black">
+    <main className="flex flex-1 flex-col items-center justify-center bg-zinc-50 px-4 py-8 font-sans dark:bg-black">
       <div className="w-full max-w-md rounded-xl bg-white p-8 shadow-sm dark:bg-zinc-950">
         <h1 className="mb-6 text-2xl font-semibold text-zinc-900 dark:text-zinc-50">
           Вход в ProStore

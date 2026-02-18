@@ -22,7 +22,7 @@ export default async function DashboardLayout({
   const userImage = session.user.image ?? null;
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex flex-1">
       <DashboardSidebar userName={userName} userImage={userImage} />
       <main className="flex-1 bg-white p-8 overflow-y-auto">
         {children}
